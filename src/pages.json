@@ -1,16 +1,67 @@
 {
-	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+	"pages": [
+		//pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
-			"path": "pages/index/index",
+			"path": "pages/home/index",
 			"style": {
-				"navigationBarTitleText": "uni-app"
+				"navigationBarTitleText": "首页"
+			}
+		},
+		{
+			"path": "pages/cate/index",
+			"style": {
+				"navigationBarTitleText": "分类"
+			}
+		},
+		{
+			"path": "pages/cart/index",
+			"style": {
+				"navigationBarTitleText": "购物车"
+			}
+		},
+		{
+			"path": "pages/my/index",
+			"style": {
+				"navigationBarTitleText": "我的"
 			}
 		}
 	],
 	"globalStyle": {
-		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "uni-app",
-		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#F8F8F8"
+		"navigationBarTextStyle": "white",
+		"navigationBarTitleText": "开源电商",
+		"navigationBarBackgroundColor": "#fa2c19",
+		"backgroundColor": "#808080"
+	},
+	"tabBar": {
+		"color": "#808080",
+		"selectedColor": "#fa2c19",
+		"borderStyle": "black",
+		"backgroundColor": "#ffffff",
+		"list": [
+			{
+				"pagePath": "pages/home/index",
+				"iconPath": "static/image/home.svg",
+				"selectedIconPath": "static/image/home_active.svg",
+				"text": "首页"
+			},
+			// {
+			// 	"pagePath": "pages/cate/index",
+			// 	"iconPath": "static/image/cate.svg",
+			// 	"selectedIconPath": "static/image/cate_active.svg",
+			// 	"text": "分类"
+			// },
+			{
+				"pagePath": "pages/cart/index",
+				"iconPath": "static/image/cart.svg",
+				"selectedIconPath": "static/image/cart_active.svg",
+				"text": "购物车"
+			},
+			{
+				"pagePath": "pages/my/index",
+				"iconPath": "static/image/my.svg",
+				"selectedIconPath": "static/image/my_active.svg",
+				"text": "我的"
+			}
+		]
 	}
 }
