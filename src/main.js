@@ -8,9 +8,9 @@ const http = new Request();
 let baseURL = "";
 
 if (process.env.NODE_ENV === "production") {
-  baseURL = "http://111.231.88.223";
+  baseURL = "http://111.231.88.223:8000/api";
 } else {
-  baseURL = "";
+  baseURL = "http://111.231.88.223:8000/api";
 }
 
 // 修改全局默认配置
@@ -37,9 +37,25 @@ http.interceptors.request.use(
 http.interceptors.response.use(
   (response) => {
     uni.hideLoading();
-    return response;
+    if (response.data.code === 401) {
+      uni.navigateTo({ url: "/" });
+    } else if (response.data.code !== 200) {
+      uni.showToast({
+        title: response.data.msg,
+        duration: 2000,
+        icon: "none",
+      });
+      return Promise.reject(response);
+    } else {
+      return response.data;
+    }
   },
-  (config) => {
+  (response) => {
+    uni.showToast({
+      title: "服务器错误",
+      duration: 2000,
+      icon: "none",
+    });
     return Promise.reject(response);
   }
 );
