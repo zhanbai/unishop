@@ -1,5 +1,5 @@
 let data = {
-  "goodsList": [
+  "productsList": [
     {
       "img": "https://img10.360buyimg.com/mobilecms/s360x360_jfs/t1/56938/38/18223/149998/628cafa1Ea4df46e3/362a20f45bb062e9.jpg!q70.dpg.webp",
       "title": "鞋架子简易多层家用进门门口结实鞋柜防尘网红多功能学生 3层白色防尘",

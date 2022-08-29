@@ -3,13 +3,13 @@
     <!-- 轮播图区域 -->
     <view class="swiper"></view>
     <!-- 商品列表区域 -->
-    <view class="goods-list">
-      <view class="goods-item" v-for="(item, i) in goodsList" :key="i">
+    <view class="products-list">
+      <view class="products-item" v-for="(item, i) in productsList" :key="i">
         <navigator url="/pages/" open-type="navigate" hover-class="navigator-hover">
-          <view class="goods-item-img"><image :src="item.img" mode="scaleToFill" /></view>
-          <view class="goods-item-info">
-            <view class="goods-item-title">{{ item.title }}</view>
-            <view class="goods-item-price"><text style="font-size: 24rpx">￥</text>{{ item.price }}</view>
+          <view class="products-item-img"><image :src="item.img" mode="scaleToFill" /></view>
+          <view class="products-item-info">
+            <view class="products-item-title">{{ item.title }}</view>
+            <view class="products-item-price text-price"><text style="font-size: 24rpx">￥</text>{{ item.price }}</view>
           </view>
         </navigator>
       </view>
@@ -22,20 +22,20 @@ import data from "./mock";
 export default {
   components: {},
   data: () => ({
-    goodsList: [], // 商品列表数据
+    productsList: [], // 商品列表数据
   }),
   computed: {},
   methods: {
-    async getGoodsList() {
-      this.goodsList = data.goodsList;
-      console.log(data.goodsList);
+    async getProductsList() {
+      this.productsList = data.productsList;
+      console.log(data.productsList);
     },
   },
   watch: {},
 
   // 页面周期函数--监听页面加载
   onLoad() {
-    this.getGoodsList();
+    this.getProductsList();
   },
   // 页面周期函数--监听页面初次渲染完成
   onReady() {},
@@ -58,28 +58,28 @@ export default {
 
 <style lang="scss" scoped>
 .home {
-  padding: 24rpx;
+  padding: $uni-spacing-col-base $uni-spacing-row-base;
 }
 
 // 商品列表区域
-.goods-list {
+.products-list {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
 
-.goods-item {
-  width: 340rpx;
-  margin-bottom: 20rpx;
-  background-color: white;
+.products-item {
+  width: 345rpx;
+  margin-bottom: $uni-spacing-col-base;
+  background-color: $uni-bg-color;
   border-radius: $uni-border-radius-base;
 
   &-info {
-    padding: 10rpx;
+    padding: $uni-spacing-col-sm $uni-spacing-row-sm;
   }
 
   &-img {
-    height: 340rpx;
+    height: 345rpx;
     background-color: pink;
     border-radius: $uni-border-radius-base $uni-border-radius-base 0 0;
 
@@ -97,9 +97,7 @@ export default {
   }
 
   &-price {
-    margin-top: $uni-spacing-row-sm;
-    font-size: $uni-font-size-blg;
-    color: $uni-text-color-primary;
+    margin-top: 8rpx;
   }
 }
 </style>
