@@ -1,16 +1,43 @@
+// 页面
 page {
   font-size: $uni-font-size-base;
   color: $uni-text-color;
   background-color: $uni-bg-color-grey;
 }
 
+// 盒子
+.box {
+  padding: 20rpx;
+  background-color: #ffffff;
+}
+
+// 图片
 image {
   width: 100%;
   height: 100%;
 }
 
-.text-price {
-  font-size: 36rpx;
-  font-weight: bold;
-  color: #dd524d;
+// 价格颜色
+.price-color {
+  color: #fa200c;
+}
+
+// 标题省略
+.title-ellipsis {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+}
+
+// 固定底部
+.fixed-bottom {
+  position: fixed;
+  bottom: 0;
+  z-index: 1;
+}
+
+.btn {
+  text-align: center;
 }
