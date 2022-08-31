@@ -50,11 +50,13 @@ export default {
   components: {
     mpHtml,
   },
-  data: () => ({
-    product: {},
-    activeSku: {},
-    activeSkuAmount: 1,
-  }),
+  data() {
+    return {
+      product: {},
+      activeSku: {},
+      activeSkuAmount: 1,
+    };
+  },
   computed: {},
   methods: {
     // 获取商品详情
@@ -74,11 +76,18 @@ export default {
     // 变更购买数量
     changeActionSkuAmount(amount) {
       this.activeSkuAmount = amount;
-      console.log(amount);
     },
     // 创建订单
-    createOrder() {
-      
+    async createOrder() {
+      let items = [
+        {
+          sku_id: this.activeSku.id,
+          amount: this.activeSkuAmount,
+        },
+      ];
+      const { data: res } = await uni.$http.post("/orders/", { items: items });
+      console.log(res);
+      uni.navigateTo({ url: "/subpkg/payment/index?id=" + res.id });
     },
   },
   watch: {},

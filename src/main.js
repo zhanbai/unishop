@@ -22,6 +22,9 @@ http.setConfig((config) => {
 // 请求开始之前做一些事情
 http.interceptors.request.use(
   (config) => {
+    config.header = {
+      Authorization: uni.getStorageSync("token") ?? "",
+    };
     uni.showLoading({
       title: "加载中",
       mask: true,
@@ -38,7 +41,7 @@ http.interceptors.response.use(
   (response) => {
     uni.hideLoading();
     if (response.data.code === 401) {
-      uni.navigateTo({ url: "/" });
+      uni.navigateTo({ url: '/subpkg/login/index' });
     } else if (response.data.code !== 200) {
       uni.showToast({
         title: response.data.msg,
@@ -70,6 +73,7 @@ uni.$showMsg = function (title = "数据加载失败！", duration = 1500) {
 };
 
 uni.$http = http;
+uni.$moment = require("moment");
 Vue.config.productionTip = false;
 
 App.mpType = "app";

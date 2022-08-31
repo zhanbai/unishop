@@ -6,8 +6,9 @@
 export default {
   components: {},
   props: {},
-  data: () => ({
-  }),
+  data() {
+    return {}
+  },
   computed: {},
   methods: {},
   watch: {},

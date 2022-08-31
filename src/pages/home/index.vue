@@ -5,7 +5,7 @@
     <!-- 商品列表区域 -->
     <view class="product-list">
       <view class="product" v-for="(item, i) in productsList" :key="i">
-        <navigator :url="'/subpkgs/products/detail?id=' + item.id" open-type="navigate" hover-class="navigator-hover">
+        <navigator :url="'/subpkg/products/detail?id=' + item.id" open-type="navigate" hover-class="navigator-hover">
           <view class="image"><image :src="item.image" mode="scaleToFill" /></view>
           <view class="info">
             <view class="title title-ellipsis">{{ item.title }}</view>
@@ -22,12 +22,14 @@
 <script>
 export default {
   components: {},
-  data: () => ({
-    productsList: [], // 商品列表数据
-    total: 0,
-    page: 1,
-    lastPage: 1,
-  }),
+  data() {
+    return {
+      productsList: [], // 商品列表数据
+      total: 0,
+      page: 1,
+      lastPage: 1,
+    };
+  },
   computed: {},
   methods: {
     // 获取商品列表
@@ -41,6 +43,8 @@ export default {
 
   // 页面周期函数--监听页面加载
   onLoad() {
+    let token = uni.getStorageSync("token")
+    console.log(token)
     this.getProductsList();
   },
   // 页面周期函数--监听页面初次渲染完成

@@ -2,15 +2,16 @@
   <view class="payment">
     <!-- 支付信息 -->
     <view class="info">
-      <view class="price price-color">￥<span class="text">7993.00</span></view>
+      <view class="price price-color"
+        >￥<span class="text">{{ order.total_amount }}</span></view
+      >
       <view class="time-left">
         <view class="text">支付剩余时间</view>
         <uni-countdown
           :font-size="12"
           background-color="#fff"
           :show-day="false"
-          :minute="12"
-          :second="40"
+          :second="order.pay_time_left"
         ></uni-countdown>
       </view>
     </view>
@@ -33,7 +34,7 @@
     </view>
     <!-- 固定底部 -->
     <view class="fixed-bottom">
-      <view class="btn">确认付款</view>
+      <view class="btn" @click="openPay">确认付款</view>
     </view>
   </view>
 </template>
@@ -43,31 +44,56 @@ export default {
   name: "payment",
   components: {},
   props: {},
-  data: () => ({
-    payMethods: [
-      {
-        type: "wechat_pay",
-        title: "微信支付",
-        icon: "/static/image/wechat_pay.png",
-      },
-      {
-        type: "alipay",
-        title: "支付宝支付",
-        icon: "/static/image/alipay.png",
-      },
-    ],
-    activePayType: "wechat_pay",
-  }),
+  data() {
+    return {
+      payMethods: [
+        {
+          type: "wechat",
+          title: "微信支付",
+          icon: "/static/image/wechat_pay.png",
+        },
+        {
+          type: "alipay",
+          title: "支付宝支付",
+          icon: "/static/image/alipay.png",
+        },
+      ],
+      activePayType: "wechat",
+      order: {},
+      isPaid: false,
+    };
+  },
   computed: {},
   methods: {
+    // 获取订单详情
+    async getOrder(id) {
+      const { data: res } = await uni.$http.get("/orders/" + id);
+      if (res.paid_at || res.closed) {
+        // uni.switchTab({ url: "/pages/home/index" });
+      }
+      this.order = res;
+      console.log(res.pay_time_left);
+    },
+    // 选择支付方式
     selectPayType(type) {
       this.activePayType = type;
+    },
+    // 唤起支付
+    async openPay() {
+      const { data: res } = await uni.$http.get("/payment/" + this.orderId + "/" + this.activePayType);
     },
   },
   watch: {},
 
   // 页面周期函数--监听页面加载
-  onLoad() {},
+  onLoad(options) {
+    if (!options.id) {
+      uni.$showMsg("缺少订单ID");
+    } else {
+      this.orderId = options.id;
+      this.getOrder(this.orderId);
+    }
+  },
   // 页面周期函数--监听页面初次渲染完成
   onReady() {},
   // 页面周期函数--监听页面显示(not-nvue)

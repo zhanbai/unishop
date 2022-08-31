@@ -73,7 +73,7 @@
 	},
 	"subPackages": [
 		{
-			"root": "subpkgs",
+			"root": "subpkg",
 			"pages": [
 				{
 					"path": "products/index",
@@ -91,6 +91,12 @@
 					"path": "payment/index",
 					"style": {
 						"navigationBarTitleText": "收银台"
+					}
+				},
+				{
+					"path": "login/index",
+					"style": {
+						"navigationBarTitleText": "登录注册"
 					}
 				}
 			]
