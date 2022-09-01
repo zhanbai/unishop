@@ -31,6 +31,13 @@ image {
   -webkit-box-orient: vertical;
 }
 
+// 固定顶部
+.fixed-top {
+  position: fixed;
+  top: 0;
+  z-index: 1;
+}
+
 // 固定底部
 .fixed-bottom {
   position: fixed;
@@ -38,6 +45,7 @@ image {
   z-index: 1;
 }
 
+// 按钮
 .btn {
   text-align: center;
 }

@@ -43,7 +43,7 @@ export default {
 
   // 页面周期函数--监听页面加载
   onLoad() {
-    let token = uni.getStorageSync("token")
+    let token = uni.getStorageSync("referer")
     console.log(token)
     this.getProductsList();
   },
