@@ -138,8 +138,6 @@ export default {
 
   text-align: center;
   letter-spacing: 0.5px;
-
-  color: #223263;
 }
 
 .sub-title {

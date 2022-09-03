@@ -94,8 +94,6 @@ export default {
     line-height: 150%;
 
     letter-spacing: 0.5px;
-
-    color: #223263;
   }
 
   .sub-name {
@@ -128,8 +126,6 @@ export default {
       line-height: 150%;
 
       letter-spacing: 0.5px;
-
-      color: #223263;
     }
   }
 

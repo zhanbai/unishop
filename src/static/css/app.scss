@@ -11,11 +11,27 @@ image {
   height: 100%;
 }
 
+.title {
+  font-weight: bold;
+  line-height: 150%;
+
+  letter-spacing: 0.5px;
+}
+
 // 标题省略
 .title-ellipsis {
   display: -webkit-box;
   overflow: hidden;
   -webkit-line-clamp: 2;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+}
+
+// 标题省略
+.title-ellipsis-sm {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 1;
   word-break: break-all;
   -webkit-box-orient: vertical;
 }
@@ -73,24 +89,7 @@ image {
   }
 }
 
-// 盒子
-// .box {
-//   padding: 20rpx;
-//   background-color: #ffffff;
-// }
-
-// 价格颜色
-.price-color {
-  color: #fa200c;
-}
-
-// 固定顶部
-.fixed-top {
-  position: fixed;
-  top: 0;
-  z-index: 1;
-}
-
+// 固定底部按钮
 .btn-fixed-bottom {
   position: fixed;
   width: 750rpx;

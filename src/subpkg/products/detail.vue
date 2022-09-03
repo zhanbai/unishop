@@ -135,8 +135,6 @@ export default {
 
     .title {
       height: 120rpx;
-
-      color: #223263;
     }
 
     .price {
@@ -147,16 +145,6 @@ export default {
 
 .box {
   padding: 32rpx;
-
-  .title {
-    font-weight: bold;
-    font-size: 28rpx;
-    line-height: 150%;
-
-    letter-spacing: 0.5px;
-
-    color: #223263;
-  }
 }
 
 .select {
@@ -176,8 +164,6 @@ export default {
 
       text-align: center;
       letter-spacing: 0.5px;
-
-      color: #223263;
 
       border: 1px solid #ebf0ff;
       border-radius: 60rpx;

@@ -143,8 +143,6 @@ export default {
       line-height: 180%;
 
       letter-spacing: 0.5px;
-
-      color: #223263;
     }
   }
 }
@@ -171,8 +169,6 @@ export default {
       font-size: 24rpx;
 
       letter-spacing: 0.5px;
-
-      color: #223263;
     }
   }
 
