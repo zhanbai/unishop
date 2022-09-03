@@ -2,14 +2,14 @@
   <view class="payment">
     <!-- 支付信息 -->
     <view class="info">
-      <view class="price price-color"
-        >￥<span class="text">{{ order.total_amount }}</span></view
-      >
+      <view class="price">￥{{ order.total_amount }}</view>
       <view class="time-left">
         <view class="text">支付剩余时间</view>
         <uni-countdown
-          :font-size="12"
-          background-color="#fff"
+          :font-size="14"
+          color="#223263"
+          splitorColor="#223263"
+          background-color=""
           :show-day="false"
           :second="order.pay_time_left"
         ></uni-countdown>
@@ -17,15 +17,15 @@
     </view>
     <!-- 支付方式 -->
     <view class="methods">
-      <view class="item box" v-for="(item, i) in payMethods" :key="i">
+      <view class="item" v-for="(item, i) in payMethods" :key="i">
         <view class="left">
           <view class="icon"><image :src="item.icon" mode="scaleToFill" /></view>
-          <view>{{ item.title }}</view>
+          <view class="title">{{ item.title }}</view>
         </view>
         <view
           ><radio
             style="transform: scale(0.8)"
-            color="#f2270c"
+            color="#40bfff"
             :value="item.type"
             :checked="activePayType === item.type"
             @click="selectPayType(item.type)"
@@ -33,7 +33,7 @@
       </view>
     </view>
     <!-- 固定底部 -->
-    <view class="fixed-bottom">
+    <view class="btn-fixed-bottom">
       <view class="btn" @click="openPay">确认付款</view>
     </view>
   </view>
@@ -114,15 +114,21 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-// 支付信息
 .info {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 40rpx;
+  padding: 60rpx;
 
-  .price .text {
-    font-size: 60rpx;
+  .price {
+    font-weight: bold;
+    font-size: 48rpx;
+    line-height: 150%;
+
+    text-align: center;
+    letter-spacing: 0.5px;
+
+    color: #40bfff;
   }
 
   .time-left {
@@ -131,42 +137,43 @@ export default {
     align-items: center;
 
     .text {
-      margin-right: 12rpx;
+      margin-right: 8rpx;
+
       font-size: 24rpx;
+      line-height: 180%;
+
+      letter-spacing: 0.5px;
+
+      color: #223263;
     }
   }
 }
 
 .methods {
   .item {
-    margin-bottom: 24rpx;
     display: flex;
     justify-content: space-between;
-    border-radius: 24rpx;
+    padding: 32rpx;
 
     .left {
       display: flex;
       align-items: center;
+
+      .icon {
+        margin-right: 32rpx;
+        width: 36rpx;
+        height: 36rpx;
+      }
     }
 
-    .icon {
-      margin-right: 12rpx;
-      width: 48rpx;
-      height: 48rpx;
+    .title {
+      font-weight: bold;
+      font-size: 24rpx;
+
+      letter-spacing: 0.5px;
+
+      color: #223263;
     }
   }
-}
-
-.fixed-bottom {
-  padding: 25rpx;
-}
-
-.btn {
-  width: 700rpx;
-  height: 80rpx;
-  line-height: 80rpx;
-  border-radius: 40rpx;
-  background-color: #007aff;
-  color: #ffffff;
 }
 </style>
