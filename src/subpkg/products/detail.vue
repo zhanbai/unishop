@@ -1,45 +1,40 @@
 <template>
-  <view class="product">
-    <!-- 商品图片 -->
-    <view class="image"><image :src="product.image" mode="scaleToFill" /></view>
-    <view class="info box">
-      <view class="price price-color"
-        >￥<span class="text">{{ product.price }}</span></view
-      >
-      <view class="title">{{ product.title }}</view>
+  <view class="detail">
+    <!-- 商品信息 -->
+    <view class="product">
+      <view class="image"><image :src="product.image" mode="scaleToFill" /></view>
+      <view class="info">
+        <view class="title title-ellipsis">{{ product.title }}</view>
+        <view class="price">￥{{ activeSku.price }}</view>
+      </view>
+    </view>
+    <!-- 选择规格 -->
+    <view class="box select">
+      <view class="title">选择</view>
+      <view class="skus">
+        <block v-for="(item, i) in product.skus" :key="i">
+          <view class="sku" :class="{ active: activeSku.id === item.id }" @click="selectSku(item)">{{
+            item.title
+          }}</view>
+        </block>
+      </view>
+    </view>
+    <!-- 选择数量 -->
+    <view class="box number">
+      <view class="title">数量</view>
+      <uni-number-box min="1" @change="changeActionSkuAmount"></uni-number-box>
     </view>
     <!-- 商品介绍 -->
-    <view class="desc box">商品介绍</view>
-    <view class="content">
-      <mp-html :content="product.description" />
+    <view class="box spec">
+      <view class="title">商品介绍</view>
+      <view class="content">
+        <mp-html :content="product.description" />
+      </view>
     </view>
     <!-- 固定底部 -->
-    <view class="fixed-bottom box">
-      <view class="btn" @click="open">立即购买</view>
+    <view class="btn-fixed-bottom">
+      <view class="btn" @click="createOrder">立即购买</view>
     </view>
-    <!-- 弹框 -->
-    <uni-popup ref="popup" type="bottom">
-      <view class="popup">
-        <view class="price price-color"
-          >￥<span class="text">{{ activeSku.price }}</span></view
-        >
-        <view class="space spec">
-          <view class="title">选择</view>
-          <view class="skus">
-            <block v-for="(item, i) in product.skus" :key="i">
-              <view class="sku" :class="{ active: activeSku.id === item.id }" @click="selectSku(item)">{{
-                item.title
-              }}</view>
-            </block>
-          </view>
-        </view>
-        <view class="space number">
-          <view class="title">数量</view>
-          <uni-number-box @change="changeActionSkuAmount"></uni-number-box>
-        </view>
-        <view class="btn" @click="createOrder">立即购买</view>
-      </view>
-    </uni-popup>
   </view>
 </template>
 
@@ -120,103 +115,88 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.detail {
+  padding-bottom: 180rpx;
+}
+
 .product {
-  padding-bottom: 120rpx;
-}
-
-// 商品图片
-.image {
-  height: 750rpx;
-}
-
-// 商品信息
-.info {
-  font-size: 32rpx;
-  font-weight: 700;
-
-  .price .text {
-    font-size: 60rpx;
-  }
-}
-
-// 商品介绍
-.desc {
-  margin-top: 20rpx;
-  text-align: center;
-}
-
-// 固定底部
-.fixed-bottom {
-  width: 750rpx;
-}
-
-.btn {
-  width: 710rpx;
-  height: 80rpx;
-  line-height: 80rpx;
-  border-radius: 40rpx;
-  background-color: #007aff;
-  color: #ffffff;
-}
-
-// 弹框
-.popup {
-  padding: 30rpx;
-  border-radius: 24rpx 24rpx 0 0;
-  background-color: #ffffff;
-
-  .price .text {
-    font-size: 48rpx;
+  .image {
+    height: 750rpx;
   }
 
-  .space {
-    margin-top: 20rpx;
+  .info {
+    padding: 32rpx;
+
+    font-size: 40rpx;
+    font-weight: bold;
+    line-height: 150%;
+
+    letter-spacing: 0.5px;
 
     .title {
-      font-weight: 700;
+      height: 120rpx;
+
+      color: #223263;
+    }
+
+    .price {
+      color: #40bfff;
     }
   }
+}
 
-  .spec .title {
-    margin-bottom: 20rpx;
-    font-weight: 700;
+.box {
+  padding: 32rpx;
+
+  .title {
+    font-weight: bold;
+    font-size: 28rpx;
+    line-height: 150%;
+
+    letter-spacing: 0.5px;
+
+    color: #223263;
   }
+}
 
+.select {
   .skus {
     display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    margin-top: 24rpx;
+    gap: 16px;
 
     .sku {
-      background-color: #f2f2f2;
-      border-radius: 30rpx;
-      color: #262626;
-      font-size: 24rpx;
+      padding: 12rpx;
       height: 60rpx;
+
+      font-weight: bold;
       line-height: 60rpx;
-      margin-right: 24rpx;
-      max-width: 540rpx;
-      min-width: 40rpx;
-      overflow: hidden;
-      padding: 0 36rpx;
+
       text-align: center;
+      letter-spacing: 0.5px;
+
+      color: #223263;
+
+      border: 1px solid #ebf0ff;
+      border-radius: 60rpx;
     }
 
     .active {
-      background-color: #fcedeb;
-      border: 1rpx solid #f2270c;
-      color: #f2270c;
-      font-weight: 700;
+      border: 1px solid #40bfff;
     }
   }
+}
 
-  .number {
-    display: flex;
-    justify-content: space-between;
-    padding: 20rpx 0;
-  }
+.number {
+  display: flex;
+  justify-content: space-between;
+}
 
-  .btn {
-    margin-top: 20rpx;
-    width: 690rpx;
+.spec {
+  .content {
+    margin-top: 24rpx;
   }
 }
 </style>
