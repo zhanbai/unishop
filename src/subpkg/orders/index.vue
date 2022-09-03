@@ -1,25 +1,25 @@
 <template>
-  <div class="orders">
-    <view class="item" v-for="(order, i) in orders" :key="i">
-      <view class="title title-ellipsis-sm">{{ order.items[0].product.title }}</view>
-      <view class="created-at text">下单时间：{{ order.created_at }}</view>
+  <view class="orders">
+    <view class="item box" v-for="(order, i) in orders" :key="i" @click="toOrderDetail(order.id)">
+      <view class="title title-ellipsis-one">{{ order.items[0].product.title }}</view>
+      <view class="created-at font-sm">下单时间：{{ order.created_at }}</view>
       <view class="line"></view>
-      <view class="box">
-        <view class="text">订单状态</view>
+      <view class="group">
+        <view class="font-sm">订单状态</view>
         <view v-if="order.paid_at">已支付</view>
         <view v-else-if="order.closed">已关闭</view>
         <view v-else>未支付</view>
       </view>
-      <view class="box">
-        <view class="text">商品种类</view>
+      <view class="group">
+        <view class="font-sm">商品种类</view>
         <view>{{ order.items.length }}</view>
       </view>
-      <view class="box">
-        <view class="text">总价</view>
+      <view class="group">
+        <view class="font-sm">总价</view>
         <view class="price">￥{{ order.total_amount }}</view>
       </view>
     </view>
-  </div>
+  </view>
 </template>
 
 <script>
@@ -42,6 +42,10 @@ export default {
       const { data: res } = await uni.$http.get("/orders?page=" + this.page);
       this.orders = [...this.orders, ...res.data];
       this.lastPage = res.last_page;
+    },
+    // 跳转订单详情
+    toOrderDetail(id) {
+      uni.navigateTo({ url: "/subpkg/orders/detail?order_id=" + id });
     },
   },
   watch: {},
@@ -81,12 +85,8 @@ export default {
 .item {
   display: flex;
   flex-direction: column;
-  padding: 32rpx;
   gap: 12px;
   margin-bottom: 32rpx;
-
-  border: 1px solid #ebf0ff;
-  border-radius: 10rpx;
 
   .text {
     font-size: 24rpx;
@@ -101,7 +101,7 @@ export default {
     border: 1px dashed #ebf0ff;
   }
 
-  .box {
+  .group {
     display: flex;
     justify-content: space-between;
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="cate">cate</div>
+  <view class="cate">cate</view>
 </template>
 
 <script>

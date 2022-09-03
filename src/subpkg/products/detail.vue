@@ -4,7 +4,7 @@
     <view class="product">
       <view class="image"><image :src="product.image" mode="scaleToFill" /></view>
       <view class="info">
-        <view class="title title-ellipsis">{{ product.title }}</view>
+        <view class="title title-ellipsis-two">{{ product.title }}</view>
         <view class="price">￥{{ activeSku.price }}</view>
       </view>
     </view>

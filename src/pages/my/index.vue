@@ -47,7 +47,6 @@ export default {
     },
     // 跳转
     onJump(item) {
-      console.log(item);
       uni.navigateTo({ url: item.page });
     },
   },

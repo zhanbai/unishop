@@ -8,7 +8,7 @@
         <navigator :url="'/subpkg/products/detail?id=' + item.id" open-type="navigate" hover-class="navigator-hover">
           <view class="image"><image :src="item.image" mode="scaleToFill" /></view>
           <view class="info">
-            <view class="title title-ellipsis">{{ item.title }}</view>
+            <view class="title title-ellipsis-two">{{ item.title }}</view>
             <view class="price">￥{{ item.price }}</view>
           </view>
         </navigator>

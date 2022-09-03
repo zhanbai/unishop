@@ -18,19 +18,10 @@
       <input placeholder="验证码" placeholder-class="input-placeholder" @input="onPasswd" />
     </view>
     <view class="sms-code">
-      <view class="box" v-if="canGetSmsCode" @click="getSmsCode">{{ codeText }}</view>
-      <view class="box" v-else>{{ codeText }}</view>
+      <view v-if="canGetSmsCode" @click="getSmsCode">{{ codeText }}</view>
+      <view v-else>{{ codeText }}</view>
     </view>
     <view class="btn" @click="onSubmit">登录</view>
-    <!-- <view class="input-box"> <input type="text" placeholder="请输入手机号" @input="onPhone" /></view>
-    <view class="input-box"
-      ><input type="text" placeholder="请输入收到的验证码" @input="onPasswd" />
-      <view>
-        <view class="code-btn" v-if="!codeDisabled" @click="getSmsCode">{{ codeText }}</view>
-        <view class="code-btn" v-else>{{ codeText }}</view>
-      </view>
-    </view>
-    <view class="btn" @click="onSubmit">登录</view> -->
   </view>
 </template>
 
@@ -184,7 +175,7 @@ export default {
 }
 
 .sms-code {
-  // margin-top: 32rpx;
+  margin-top: 32rpx;
 
   font-weight: bold;
   font-size: 24rpx;
@@ -198,5 +189,9 @@ export default {
   .box {
     padding: 20rpx 0;
   }
+}
+
+.btn {
+  margin-top: 32rpx;
 }
 </style>

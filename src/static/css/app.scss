@@ -5,6 +5,44 @@ page {
   background-color: $uni-bg-color;
 }
 
+.color-primary {
+  color: $uni-color-primary;
+}
+
+.color-success {
+  color: $uni-color-success;
+}
+
+.color-warning {
+  color: $uni-color-warning;
+}
+
+.color-error {
+  color: $uni-color-error;
+}
+
+// 小号文字
+.font-sm {
+  color: #223263;
+  font-size: $uni-font-size-sm;
+
+  opacity: 0.5;
+}
+
+$uni-color-primary: #40bfff;
+$uni-color-success: #53d1b6;
+$uni-color-warning: #ffc833;
+$uni-color-error: #fb7181;
+
+// 盒子
+.box {
+  padding: 32rpx;
+  gap: 12px;
+
+  border: 1px solid #ebf0ff;
+  border-radius: 10rpx;
+}
+
 // 图片
 image {
   width: 100%;
@@ -18,8 +56,16 @@ image {
   letter-spacing: 0.5px;
 }
 
-// 标题省略
-.title-ellipsis {
+.title-sm {
+  font-weight: bold;
+  font-size: 24rpx;
+  line-height: 150%;
+
+  letter-spacing: 0.5px;
+}
+
+// 标题省略两行
+.title-ellipsis-two {
   display: -webkit-box;
   overflow: hidden;
   -webkit-line-clamp: 2;
@@ -27,8 +73,8 @@ image {
   -webkit-box-orient: vertical;
 }
 
-// 标题省略
-.title-ellipsis-sm {
+// 标题省略一行
+.title-ellipsis-one {
   display: -webkit-box;
   overflow: hidden;
   -webkit-line-clamp: 1;
@@ -46,8 +92,6 @@ image {
   padding: 32rpx;
 
   width: 330rpx;
-
-  background: #ffffff;
 
   border: 1px solid #ebf0ff;
   border-radius: 10rpx;
@@ -80,6 +124,53 @@ image {
 
     .price {
       font-weight: bold;
+      line-height: 180%;
+
+      letter-spacing: 0.5px;
+
+      color: $uni-color-primary;
+    }
+  }
+}
+
+// 商品卡片2
+.product-card-2 {
+  box-sizing: border-box;
+
+  display: flex;
+  align-items: center;
+  padding: 32rpx;
+
+  border: 1px solid #ebf0ff;
+  border-radius: 10rpx;
+
+  .image {
+    margin-right: 24rpx;
+
+    width: 144rpx;
+    height: 144rpx;
+
+    border-radius: 10rpx;
+
+    image {
+      border-radius: 10rpx;
+    }
+  }
+
+  .info {
+    width: 500rpx;
+
+    .card-title {
+      height: 80rpx;
+
+      font-weight: bold;
+      font-size: 24rpx;
+      line-height: 150%;
+    }
+
+    .price {
+      font-weight: bold;
+      font-size: 24rpx;
       line-height: 180%;
 
       letter-spacing: 0.5px;
