@@ -38,19 +38,19 @@
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
 		"navigationBarTitleText": "开源电商",
-		"navigationBarBackgroundColor": "#007aff",
+		"navigationBarBackgroundColor": "#40BFFF",
 		"backgroundColor": "#f8f8f8"
 	},
 	"tabBar": {
-		"color": "#808080",
-		"selectedColor": "#007aff",
+		"color": "#9098B1",
+		"selectedColor": "#40BFFF",
 		"borderStyle": "black",
 		"backgroundColor": "#ffffff",
 		"list": [
 			{
 				"pagePath": "pages/home/index",
-				"iconPath": "static/image/home.svg",
-				"selectedIconPath": "static/image/home_active.svg",
+				"iconPath": "/static/image/home.png",
+				"selectedIconPath": "static/image/home_active.png",
 				"text": "首页"
 			},
 			// {
@@ -67,8 +67,8 @@
 			// },
 			{
 				"pagePath": "pages/my/index",
-				"iconPath": "static/image/my.svg",
-				"selectedIconPath": "static/image/my_active.svg",
+				"iconPath": "static/image/my.png",
+				"selectedIconPath": "static/image/my_active.png",
 				"text": "我的"
 			}
 		]

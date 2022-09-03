@@ -2,24 +2,13 @@
 page {
   font-size: $uni-font-size-base;
   color: $uni-text-color;
-  background-color: $uni-bg-color-grey;
-}
-
-// 盒子
-.box {
-  padding: 20rpx;
-  background-color: #ffffff;
+  background-color: $uni-bg-color;
 }
 
 // 图片
 image {
   width: 100%;
   height: 100%;
-}
-
-// 价格颜色
-.price-color {
-  color: #fa200c;
 }
 
 // 标题省略
@@ -29,6 +18,70 @@ image {
   -webkit-line-clamp: 2;
   word-break: break-all;
   -webkit-box-orient: vertical;
+}
+
+// 商品卡片
+.product-card {
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32rpx;
+
+  width: 330rpx;
+
+  background: #ffffff;
+
+  border: 1px solid #ebf0ff;
+  border-radius: 10rpx;
+
+  .image {
+    width: 266rpx;
+    height: 266rpx;
+
+    border-radius: 10rpx;
+
+    image {
+      border-radius: 10rpx;
+    }
+  }
+
+  .info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 16rpx;
+    padding: 0;
+
+    width: 266rpx;
+
+    .title {
+      height: 80rpx;
+
+      font-weight: bold;
+    }
+
+    .price {
+      font-weight: bold;
+      line-height: 180%;
+
+      letter-spacing: 0.5px;
+
+      color: $uni-color-primary;
+    }
+  }
+}
+
+// 盒子
+.box {
+  padding: 20rpx;
+  background-color: #ffffff;
+}
+
+// 价格颜色
+.price-color {
+  color: #fa200c;
 }
 
 // 固定顶部

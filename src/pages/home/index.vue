@@ -4,14 +4,12 @@
     <view class="swiper"></view>
     <!-- 商品列表区域 -->
     <view class="product-list">
-      <view class="product" v-for="(item, i) in productsList" :key="i">
+      <view class="product-card" v-for="(item, i) in productsList" :key="i">
         <navigator :url="'/subpkg/products/detail?id=' + item.id" open-type="navigate" hover-class="navigator-hover">
           <view class="image"><image :src="item.image" mode="scaleToFill" /></view>
           <view class="info">
             <view class="title title-ellipsis">{{ item.title }}</view>
-            <view class="price price-color"
-              >￥<span class="text">{{ item.price }}</span></view
-            >
+            <view class="price">￥{{ item.price }}</view>
           </view>
         </navigator>
       </view>
@@ -43,8 +41,8 @@ export default {
 
   // 页面周期函数--监听页面加载
   onLoad() {
-    let token = uni.getStorageSync("referer")
-    console.log(token)
+    let token = uni.getStorageSync("referer");
+    console.log(token);
     this.getProductsList();
   },
   // 页面周期函数--监听页面初次渲染完成
@@ -73,41 +71,13 @@ export default {
 <style lang="scss" scoped>
 // 商品列表
 .product-list {
-  padding: 20rpx;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  padding: 32rpx;
 
-  .product {
-    width: 345rpx;
-    margin-bottom: 20rpx;
-    border-radius: 16rpx;
-    background-color: #ffffff;
-
-    .image {
-      width: 345rpx;
-      height: 345rpx;
-
-      image {
-        border-radius: 16rpx 16rpx 0 0;
-      }
-    }
-
-    .info {
-      padding: 12rpx 16rpx;
-
-      .title {
-        height: 72rpx;
-      }
-
-      .price {
-        margin-top: 12rpx;
-
-        .text {
-          font-size: 40rpx;
-        }
-      }
-    }
+  .product-card {
+    margin-bottom: 24rpx;
   }
 }
 </style>
