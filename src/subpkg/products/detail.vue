@@ -22,7 +22,7 @@
     <!-- 选择数量 -->
     <view class="box number">
       <view class="title">数量</view>
-      <uni-number-box min="1" @change="changeActionSkuAmount"></uni-number-box>
+      <uni-number-box :min="1" @change="changeActionSkuAmount"></uni-number-box>
     </view>
     <!-- 商品介绍 -->
     <view class="box spec">

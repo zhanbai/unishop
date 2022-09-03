@@ -1,15 +1,19 @@
 <template>
   <view class="my">
-    <view class="info">
+    <view class="profile">
       <view class="avatar">
         <image :src="userInfo.avatar ? userInfo.avatar : defaultAvatar" mode="scaleToFill" />
-        <!-- <view v-else>{{ 头 }}头</view> -->
       </view>
-      <view class="name">{{ userInfo.name }}</view>
+      <view class="right">
+        <view class="name">{{ userInfo.name }}</view>
+        <view class="sub-name">{{ userInfo.created_at }}</view>
+      </view>
     </view>
-    <view class="order">
-      <view class="item" v-for="(item, i) in orderTypes" :key="i" @click="toOrders(item.state)">
-        <view class="icon"><image :src="item.icon" mode="scaleToFill" /></view>
+    <view class="lists">
+      <view class="item" v-for="(item, i) in lists" :key="i" @click="onJump(item)">
+        <view class="icon">
+          <image :src="item.icon" mode="scaleToFill" />
+        </view>
         <view class="title">{{ item.title }}</view>
       </view>
     </view>
@@ -21,45 +25,38 @@ export default {
   components: {},
   data() {
     return {
-      defaultAvatar: "/static/image/avatar.svg",
-      userInfo: {
-        id: 1,
-        name: "18668014527",
-        phone: "18668014527",
-        avatar: null,
-        created_at: "2022-08-30 17:37:56",
-        updated_at: "2022-08-30 17:37:56",
-      },
-      orderTypes: [
+      defaultAvatar: "/static/image/avatar.png",
+      userInfo: {},
+      lists: [
         {
-          state: 0,
-          title: "待付款",
-          icon: "/static/image/order_wait_pay.svg",
-        },
-        {
-          state: 1,
-          title: "已完成",
-          icon: "/static/image/order_complete.svg",
-        },
-        {
-          state: -1,
-          title: "全部订单",
-          icon: "/static/image/order.svg",
+          type: "order",
+          title: "订单",
+          icon: "/static/image/bag.png",
+          page: "/subpkg/orders/index",
         },
       ],
     };
   },
   computed: {},
   methods: {
-    // 跳转订单列表页
-    toOrders(state) {
-      uni.navigateTo({ url: "/subpkg/orders/index?state=" + state });
+    // 获取当前用户信息
+    async getUser() {
+      const { data: res } = await uni.$http.get("/user");
+      res.name = isNaN(res.name) && res.name.length !== 11 ? res.name : res.name.replace(res.name.substr(3, 4), "****");
+      this.userInfo = res;
+    },
+    // 跳转
+    onJump(item) {
+      console.log(item);
+      uni.navigateTo({ url: item.page });
     },
   },
   watch: {},
 
   // 页面周期函数--监听页面加载
-  onLoad() {},
+  onLoad() {
+    this.getUser();
+  },
   // 页面周期函数--监听页面初次渲染完成
   onReady() {},
   // 页面周期函数--监听页面显示(not-nvue)
@@ -80,47 +77,64 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.info {
-  padding: 60rpx 40rpx 120rpx 40rpx;
+.profile {
   display: flex;
   align-items: center;
-  background-image: linear-gradient(90deg, #409eff, #007aff);
-  color: #ffffff;
-  font-size: 36rpx;
+  padding: 48rpx 32rpx;
 
   .avatar {
-    margin-right: 20rpx;
-    width: 100rpx;
-    height: 100rpx;
-    line-height: 100rpx;
-    border-radius: 50%;
-    text-align: center;
-    font-size: 40rpx;
-    font-weight: 700;
-    background-color: #e9e9eb;
+    margin-right: 32rpx;
+
+    width: 144rpx;
+    height: 144rpx;
+  }
+
+  .name {
+    font-weight: bold;
+    line-height: 150%;
+
+    letter-spacing: 0.5px;
+
+    color: #223263;
+  }
+
+  .sub-name {
+    font-size: 24rpx;
+    line-height: 180%;
+
+    letter-spacing: 0.5px;
+
+    color: #9098b1;
   }
 }
 
-.order {
-  margin-top: -50rpx;
-  margin-left: 25rpx;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  width: 700rpx;
-  height: 160rpx;
-  background-color: #ffffff;
-  border-radius: 24rpx;
-  // border: 1rpx solid red;
+.lists {
+  margin-top: 16rpx;
 
   .item {
     display: flex;
-    flex-direction: column;
     align-items: center;
+    padding: 32rpx;
+
+    .icon {
+      margin-right: 32rpx;
+      width: 48rpx;
+      height: 48rpx;
+    }
+
+    .title {
+      font-weight: bold;
+      font-size: 24rpx;
+      line-height: 150%;
+
+      letter-spacing: 0.5px;
+
+      color: #223263;
+    }
   }
-  .icon {
-    width: 60rpx;
-    height: 60rpx;
+
+  .item:hover {
+    background: #ebf0ff;
   }
 }
 </style>

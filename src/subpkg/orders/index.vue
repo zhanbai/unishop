@@ -92,7 +92,7 @@ export default {
 
   // 页面周期函数--监听页面加载
   onLoad(options) {
-    this.activeNav = options.state;
+    // this.activeNav = options.state;
     this.getOrders();
   },
   // 页面周期函数--监听页面初次渲染完成

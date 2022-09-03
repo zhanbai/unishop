@@ -175,5 +175,9 @@ export default {
       color: #223263;
     }
   }
+
+  .item:hover {
+    background: #EBF0FF;
+  }
 }
 </style>
