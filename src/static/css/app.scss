@@ -74,10 +74,10 @@ image {
 }
 
 // 盒子
-.box {
-  padding: 20rpx;
-  background-color: #ffffff;
-}
+// .box {
+//   padding: 20rpx;
+//   background-color: #ffffff;
+// }
 
 // 价格颜色
 .price-color {
@@ -96,15 +96,13 @@ image {
   width: 750rpx;
   height: 200rpx;
   bottom: 0;
-
-  background: #ffffff;
 }
 
 // 按钮
 .btn {
   width: 686rpx;
   height: 114rpx;
-  margin-top: 24rpx;
+  // margin-top: 24rpx;
   margin-left: calc(50% - 686rpx / 2);
 
   background: #40bfff;
